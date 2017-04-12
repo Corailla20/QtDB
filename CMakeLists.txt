@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.5)                                                                                                                                                      
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+find_package(Qt4 REQUIRED QtGui QtXml QtSql)
+add_executable(myexe main.cpp)
+target_link_libraries(myexe Qt4::QtGui Qt4::QtXml Qt4::QtSql)
