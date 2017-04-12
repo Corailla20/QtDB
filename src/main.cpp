@@ -21,7 +21,7 @@ void create_tables(QSqlDatabase & db){
 		std::cout << "Impossible de créer la table Utilisateur" << std::endl;
 	}
 	if(!query3.exec()){
-		std::cout << "Impossible de créer la table Salle" << std::endl;
+        std::cout << "Impossible de créer la table Salle" << std::endl;
 	}
 	if(!query4.exec()){
 		std::cout << "Impossible de créer la table Reservation" << query4.lastError().text().toStdString() << std::endl;
