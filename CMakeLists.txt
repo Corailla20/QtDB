@@ -1,8 +1,13 @@
-cmake_minimum_required(VERSION 2.8)    
-project(QtDB)                                                                                                                                                  
+cmake_minimum_required(VERSION 2.8)
+
+project(QtDB)
+
+FIND_PACKAGE(Qt4 REQUIRED QtGui QtXml QtSql)
+INCLUDE(${QT_USE_FILE})
+INCLUDE_DIRECTORIES(${QT_INCLUDE_DIR} ${QT_QTGUI_INCLUDE_DIR} ${QT_QTCORE_INCLUDE_DIR} ${QT_QTXML_INCLUDE_DIR} ${QT_QTCORE_INCLUDE_DIR} ${QT_QTSQL_INCLUDE_DIR})
+
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-find_package(Qt4 REQUIRED QtGui QtXml QtSql)
-FILE(GLOB sources_list src/*.cpp src/*.h Data/*.* src/Controller/*.cpp src/Controller/*.h src/Model/*.cpp src/Model/*.h src/View/*.cpp src/View/*.h)
-add_executable(QtDB ${sources_list})
-#add_subdirectory("src");
+
+add_subdirectory(src)
+
