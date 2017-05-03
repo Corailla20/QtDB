@@ -33,6 +33,8 @@ private:
 	string q_sql_database = "QSQLITE";
 
     DBIntecractor();
+	
+	void ExecuteQuery(string query_string);
 
 public:
 
