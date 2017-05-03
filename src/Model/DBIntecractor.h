@@ -1,3 +1,13 @@
+/**
+ * Class DBIntecractor : Generic class for connect and interact with a database: CRUD (Singleton)
+ * host_name        = The Sql name host
+ * database_name    = The database name
+ * user_name        = The user name
+ * password         = The user name password
+ * q_sql_database   = The QSqlDatabase 
+ * @author Pierre CHARLES - TechMed.
+ */
+
 #include <iostream>
 #include <QSqlDatabase>
 #include <QSqlQuery>
@@ -12,35 +22,27 @@ class DBInteractor
 private:
 
     static bool instanceFlag;
+	static bool error;
     static DBIntecractor *db_instance;
+	static QSqlDatabase db;
+	
+	string host_name = "localhost";
+	string database_name = "techmed";
+	string user_name = "techmed";
+	string password = "master";
+	string q_sql_database = "QSQLITE";
 
-    DBIntecractor()
-    {
-        cout<<"Creation de l'instance"<<endl;
-        QSqlDatabase db_instance = QSqlDatabase::addDatabase("QSQLITE");
-        db_instance.setHostName("localhost");
-        db_instance.setDatabaseName("techmed");
-        db_instance.setUserName("techmed");
-        db_instance.setPassword("master");
-        instanceFlag = db_instance.open();
-
-        QSqlQuery query(db_instance);
-        if (!query.exec("PRAGMA foreign_keys = ON")){
-            std::cout << "Impossible d'activer les clés étrangères" << std::endl;
-            instanceFlag = false;
-        }
-        if(instanceFlag == false){
-            std::cout << "Errors" << std::endl;
-        }
-    }
+    DBIntecractor();
 
 public:
+
     static DBIntecractor* getInstance();
-
+	
     void InsertDefaultData(string file_name);
+	void PrepareAndExecuteQuerySelect();
+	void PrepareAndExecuteQueryInsert();
+	void PrepareAndExecuteQueryUpdate();
+	void PrepareAndExecuteQueryDelete();
 
-    ~DBIntecractor()
-    {
-        instanceFlag = false;
-    }
+    ~DBIntecractor():
 };
