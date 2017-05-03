@@ -51,6 +51,14 @@ DBInteractor::~DBInteractor()
 {
 	instanceFlag = false;
 }
+/**
+* Methode for execute a query
+* Params : A string query
+*/
+void ExecuteQuery(string query_string)
+{
+	
+}
 
 /**
 * Methode for prepare, generate and execute an insert query
