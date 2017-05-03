@@ -1,3 +1,8 @@
+
+
+
+
+
 #include <iostream>
 #include <QSqlDatabase>
 #include <QSqlQuery>
@@ -40,29 +45,6 @@ void addData(QSqlDatabase & db){
     queryAdd1.exec();
     queryAdd2.exec();
 }
-
-
-DBInteractor::DBInteractor()
-{
-    cout<<"Creation de l'instance"<<endl;
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setHostName("localhost");
-    db.setDatabaseName("techmed");
-    db.setUserName("techmed");
-    db.setPassword("master");
-    bool ok = db.open();
-}
-
-DBInteractor::~DBInteractor()
-{
-    cout<<"Destruction de l'instance"<<endl;
-}
-
-DBInteractor& DBInteractor::Instance()
-{
-    return db_instance;
-}
-
 
 
 int main() {
