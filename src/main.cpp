@@ -12,7 +12,7 @@ void create_tables(QSqlDatabase & db){
 	QSqlQuery query4("CREATE TABLE IF NOT EXISTS Reservation(libelle VARCHAR(64), reservation_id INTEGER, debut DATETIME, salle_id INTEGER NOT NULL, user_id INTEGER NOT NULL, fin DATETIME, PRIMARY KEY(reservation_id), FOREIGN KEY(salle_id) REFERENCES Salle(salle_id), FOREIGN KEY(user_id) REFERENCES Utilisateur(user_id))", db);
 	QSqlQuery query5("CREATE TABLE IF NOT EXISTS Materiel(nom VARCHAR(32), materiel_id INTEGER, PRIMARY KEY(materiel_id))", db);
 	QSqlQuery query6("CREATE TABLE IF NOT EXISTS Equipee(nombre INTEGER, materiel_id INTEGER NOT NULL, salle_id INTEGER NOT NULL, FOREIGN KEY(salle_id) REFERENCES Salle(salle_id), FOREIGN KEY(materiel_id) REFERENCES Materiel(materiel_id)", db);
-	
+
 	
 	if(!query1.exec()){
 		std::cout << "Impossible de créer la table Groupe" << std::endl;
