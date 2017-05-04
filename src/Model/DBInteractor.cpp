@@ -2,9 +2,16 @@
 
 bool DBInteractor::instanceFlag = false;
 DBInteractor* DBInteractor::db_instance = NULL;
+QSqlDatabase DBInteractor::db;
+
+const string DBInteractor::HOST_NAME = "localhost";
+const string DBInteractor::DATABASE_NAME = "techmed";
+const string DBInteractor::USER_NAME = "techmed";
+const string DBInteractor::PASSWORD = "master";
+const string DBInteractor::QSQL_DATABASE = "QSQLITE";
 
 /**
-* Methode to get or create a database instance access
+* Methode for get or create a database instance access
 * Return a database instance
 */
 DBInteractor* DBInteractor::getInstance() 
@@ -20,17 +27,18 @@ DBInteractor* DBInteractor::getInstance()
 		return db_instance;
 	}
 }
+
 /**
 * Methode to create and instantiate a database interaction
 */
 DBInteractor::DBInteractor()
 {
 	cout<<"Creation of the database instance"<<endl;
-	db = QSqlDatabase::addDatabase(q_sql_database);
-	db.setHostName(host_name);
-	db.setDatabaseName(database_name);
-	db.setUserName(user_name);
-	db.setPassword(password);
+    db = QSqlDatabase::addDatabase(QSQL_DATABASE.c_str());
+    db.setHostName(HOST_NAME.c_str());
+    db.setDatabaseName(DATABASE_NAME.c_str());
+    db.setUserName(USER_NAME.c_str());
+    db.setPassword(PASSWORD.c_str());
 	error = db.open();
 
 	QSqlQuery query(db);
@@ -44,13 +52,6 @@ DBInteractor::DBInteractor()
 	}
 }
 
-/**
-* Methode for destroy an database instance
-*/
-DBInteractor::~DBInteractor()
-{
-	instanceFlag = false;
-}
 /**
 * Methode for execute a query
 * Params : A string query

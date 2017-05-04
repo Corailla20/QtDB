@@ -1,10 +1,10 @@
 /**
  * Class DBIntecractor : Generic class for connect and interact with a database: CRUD (Singleton)
- * host_name        = The Sql name host
- * database_name    = The database name
- * user_name        = The user name
- * password         = The user name password
- * q_sql_database   = The QSqlDatabase 
+ * HOST_NAME        = The Sql name host
+ * DATABASE_NAME    = The database name
+ * USER_NAME        = The user name
+ * PASSWORD         = The user name password
+ * QSQL_DATABASE   = The QSqlDatabase
  * @author Pierre CHARLES - TechMed.
  */
 
@@ -25,12 +25,12 @@ private:
     static bool error;
     static DBInteractor *db_instance;
     static QSqlDatabase db;
-	
-    string host_name = "localhost";
-    string database_name = "techmed";
-    string user_name = "techmed";
-    string password = "master";
-    string q_sql_database = "QSQLITE";
+
+    static const string HOST_NAME;
+    static const string DATABASE_NAME;
+    static const string USER_NAME;
+    static const string PASSWORD;
+    static const string QSQL_DATABASE;
 
     DBInteractor();
 	
@@ -46,5 +46,8 @@ public:
 	void PrepareAndExecuteQueryUpdate();
 	void PrepareAndExecuteQueryDelete();
 
-    ~DBInteractor():
+    ~DBInteractor()
+    {
+        instanceFlag = false;
+    }
 };

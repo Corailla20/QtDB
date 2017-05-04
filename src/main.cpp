@@ -1,9 +1,8 @@
 #include <iostream>
 #include <string>
-#include "Model/DBIntecractor.h"
+#include "Model/DBInteractor.h"
 
-int main() {
-
-    DBIntecractor::getInstance()->InsertDefaultData("../data/data.sql");
-
+int main()
+{
+    DBInteractor::getInstance()->InsertDefaultData("../data/data.sql");
 }
