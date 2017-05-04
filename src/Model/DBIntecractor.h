@@ -22,23 +22,23 @@ class DBInteractor
 private:
 
     static bool instanceFlag;
-	static bool error;
-    static DBIntecractor *db_instance;
-	static QSqlDatabase db;
+    static bool error;
+    static DBInteractor *db_instance;
+    static QSqlDatabase db;
 	
-	string host_name = "localhost";
-	string database_name = "techmed";
-	string user_name = "techmed";
-	string password = "master";
-	string q_sql_database = "QSQLITE";
+    string host_name = "localhost";
+    string database_name = "techmed";
+    string user_name = "techmed";
+    string password = "master";
+    string q_sql_database = "QSQLITE";
 
-    DBIntecractor();
+    DBInteractor();
 	
 	void ExecuteQuery(string query_string);
 
 public:
 
-    static DBIntecractor* getInstance();
+    static DBInteractor* getInstance();
 	
     void InsertDefaultData(string file_name);
 	void PrepareAndExecuteQuerySelect();
@@ -46,5 +46,5 @@ public:
 	void PrepareAndExecuteQueryUpdate();
 	void PrepareAndExecuteQueryDelete();
 
-    ~DBIntecractor():
+    ~DBInteractor():
 };
