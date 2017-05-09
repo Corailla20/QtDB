@@ -46,6 +46,32 @@ void addData(QSqlDatabase & db){
     queryAdd2.exec();
 }
 
+<<<<<<< HEAD:src/Model/DBInteraction.cpp
+/*
+DBInteractor::DBInteractor()
+{
+    cout<<"Creation de l'instance"<<endl;
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setHostName("localhost");
+    db.setDatabaseName("techmed");
+    db.setUserName("techmed");
+    db.setPassword("master");
+    bool ok = db.open();
+}
+
+DBInteractor::~DBInteractor()
+{
+    cout<<"Destruction de l'instance"<<endl;
+}
+
+DBInteractor& DBInteractor::Instance()
+{
+    return db_instance;
+}
+
+
+=======
+>>>>>>> 40b777d26194ad89b4941d5ac585a394540578d6:src/provisoire_pierre.cpp
 
 int main() {
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
@@ -109,3 +135,4 @@ int main() {
     }
 
 }
+*/
