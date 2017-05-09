@@ -1,10 +1,8 @@
 #include <iostream>
-#include <QSqlDatabase>
-#include <QSqlQuery>
-#include <QSqlError>
-#include <qvariant.h>
 #include <string>
+#include "Model/DBInteractor.h"
 
+<<<<<<< HEAD
 /*void create_tables(QSqlDatabase & db){
 	QSqlQuery query1("CREATE TABLE IF NOT EXISTS Groupe(nom VARCHAR(32), group_id INTEGER, PRIMARY KEY(group_id))", db);
 	QSqlQuery query2("CREATE TABLE IF NOT EXISTS Utilisateur(nom VARCHAR(64), user_id INTEGER, group_id INTEGER NOT NULL, PRIMARY KEY(user_id), FOREIGN KEY(group_id) REFERENCES Groupe(group_id))", db);
@@ -103,4 +101,9 @@ int main() {
 		query.exec();
 	}
 */
+=======
+int main()
+{
+    DBInteractor::getInstance()->InsertDefaultData("../data/data.sql");
+>>>>>>> 40b777d26194ad89b4941d5ac585a394540578d6
 }
