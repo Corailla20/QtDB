@@ -80,7 +80,7 @@ void DBInteractor::PrepareAndExecuteQuerySelect(String tableName, Map<String, St
 
     selectSQLBuilder = new StringBuilder(selectSQLBuilder.subSequence(0, selectSQLBuilder.length() - 1));
 	cout << selectSQLBuilder.toString() << endl;
-    return selectSQLBuilder.toString();
+    //return selectSQLBuilder.toString();
 }
 
 
@@ -116,7 +116,7 @@ void DBInteractor::PrepareAndExecuteQueryInsert(String tableName, Map<String, St
     insertSQLBuilder = new StringBuilder(insertSQLBuilder.subSequence(0, insertSQLBuilder.length() - 1));
     insertSQLBuilder.append(")");
 	cout << insertSQLBuilder.toString() << endl;
-    return insertSQLBuilder.toString();
+    //return insertSQLBuilder.toString();
 }
 
 
@@ -156,7 +156,7 @@ void DBInteractor::PrepareAndExecuteQueryUpdate(String tableName, Map<String, St
 
     updateQueryBuilder = new StringBuilder(updateQueryBuilder.subSequence(0, updateQueryBuilder.length() - 1));
 	cout << updateQueryBuilder.toString() << endl;
-    return updateQueryBuilder.toString();  
+    //return updateQueryBuilder.toString();  
 }
 
 
@@ -182,7 +182,7 @@ void DBInteractor::PrepareAndExecuteQueryDelete(String tableName, Map<String, St
 
     deleteSQLBuilder = new StringBuilder(deleteSQLBuilder.subSequence(0, deleteSQLBuilder.length() - 5));
 	cout << deleteSQLBuilder.toString() << endl;
-    return deleteSQLBuilder.toString(); 
+    //return deleteSQLBuilder.toString(); 
 }
 
 /**
@@ -241,7 +241,3 @@ void DBInteractor::InsertDefaultData(string pathFileName)
 		cerr << "Impossible d'ouvrir le fichier !" << endl;
 	}
 }
-
-
-
-

@@ -6,8 +6,11 @@
 int main()
 {
 	/** DEBUT PIERRE EN DEV**/
-    DBInteractor::getInstance()->InsertDefaultData("../data/data.sql");
+    
+	//1) INSERT DATA
+	DBInteractor::getInstance()->InsertDefaultData("../data/data.sql");
 
+	// 2) 
 	// EXAMPLE UPDATE
 	// Preparing to call and execute function to generate UPDATE SQL request
 	Map<String, String> columnValueMappingForSet = new HashMap<String, String>();
@@ -21,6 +24,7 @@ int main()
 
 	// UPDATE
 	DBInteractor::getInstance()->PrepareAndExecuteQueryUpdate("TESST", columnValueMappingForSet, columnValueMappingForCondition);
+
 
 	/** FIN PIERRE **/
 

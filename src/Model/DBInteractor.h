@@ -33,8 +33,6 @@ private:
     static const string QSQL_DATABASE;
 
     DBInteractor();
-	
-	
 
 public:
 
