@@ -41,7 +41,7 @@ void addData(QSqlDatabase & db){
     queryAdd2.exec();
 }
 
-
+/*
 DBInteractor::DBInteractor()
 {
     cout<<"Creation de l'instance"<<endl;
@@ -127,3 +127,4 @@ int main() {
     }
 
 }
+*/

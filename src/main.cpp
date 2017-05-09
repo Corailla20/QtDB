@@ -5,7 +5,7 @@
 #include <qvariant.h>
 #include <string>
 
-void create_tables(QSqlDatabase & db){
+/*void create_tables(QSqlDatabase & db){
 	QSqlQuery query1("CREATE TABLE IF NOT EXISTS Groupe(nom VARCHAR(32), group_id INTEGER, PRIMARY KEY(group_id))", db);
 	QSqlQuery query2("CREATE TABLE IF NOT EXISTS Utilisateur(nom VARCHAR(64), user_id INTEGER, group_id INTEGER NOT NULL, PRIMARY KEY(user_id), FOREIGN KEY(group_id) REFERENCES Groupe(group_id))", db);
 	QSqlQuery query3("CREATE TABLE IF NOT EXISTS Salle(numero VARCHAR(32), salle_id INTEGER, capacite INTEGER, emplacement VARCHAR(64), PRIMARY KEY(salle_id))", db);
@@ -39,11 +39,11 @@ void addData(QSqlDatabase & db){
 	QSqlQuery queryAdd5("INSERT INTO Salle VALUES('643', 1, 16, 'R3')", db);
 	queryAdd1.exec();
 	queryAdd2.exec();
-}
+}*/
 
 
 int main() {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+   /* QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setHostName("localhost");
     db.setDatabaseName("techmed");
     db.setUserName("techmed");
@@ -102,5 +102,5 @@ int main() {
 		
 		query.exec();
 	}
-
+*/
 }
