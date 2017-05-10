@@ -10,7 +10,6 @@ using namespace std;
 int main(int argc, char** argv)
 {
 
-    /*
     // Affichage de la fenetre
     QApplication app(argc, argv);
 
@@ -18,14 +17,12 @@ int main(int argc, char** argv)
 
     // Remplissage des combobox
     mywindow.initialization();
-    mywindow.getDataFromDB();
 
     mywindow.show();
 
     return app.exec();
 
-    */
-
+     /*
 	//1) INSERT DATA
     //DBInteractor::getInstance()->InsertDefaultData("../data/data.sql");
 
@@ -70,4 +67,5 @@ int main(int argc, char** argv)
     columnValueMappingForCondition2["age"] = "'10'";
 
     DBInteractor::getInstance()->PrepareAndExecuteQueryDelete("Personne",columnValueMappingForCondition2);
+    */
 }
