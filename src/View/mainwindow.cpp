@@ -71,9 +71,9 @@ void MainWindow::getDataFromDB()
 void MainWindow::on_Button_Rechercher_clicked()
 {
 
-    string patient_text = ui->CB_Patient->currentText();
-    string modalite_text = ui->CB_Modalite->currentText();
-    string region_text = ui->CB_Region->currentText();
+    string patient_text = ui->CB_Patient->currentText().toStdString();
+    string modalite_text = ui->CB_Modalite->currentText().toStdString();
+    string region_text = ui->CB_Region->currentText().toStdString();
 
     cout << "Patient : " << patient_text << endl;
     cout << "Modalite : " << modalite_text << endl;
