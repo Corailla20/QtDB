@@ -17,7 +17,6 @@ int main(int argc, char** argv)
 
     // Remplissage des combobox
     mywindow.initialization();
-    mywindow.getDataFromDB();
 
     mywindow.show();
 

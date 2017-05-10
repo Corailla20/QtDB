@@ -227,14 +227,14 @@ void DBInteractor::ExecuteQuery(string sqlQueryString)
  */
 void DBInteractor::InsertDefaultData(string pathFileName)
 {
-	ifstream file(pathFileName, ios::in);
+    ifstream file(pathFileName.c_str(), ios::in);
     if(file) {
-		string line;
-		while(getline(file, line)) {
-			cout << line << endl;
-			ExecuteQuery(line);
-		}
-	} else {
-		cerr << "Impossible d'ouvrir le fichier !" << endl;
-	}
+        string line;
+        while(getline(file, line)) {
+            cout << line << endl;
+            ExecuteQuery(line);
+        }
+    } else {
+        cerr << "Impossible d'ouvrir le fichier !" << endl;
+    }
 }
