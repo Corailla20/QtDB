@@ -10,10 +10,13 @@ using namespace std;
 int main(int argc, char** argv)
 {
     // Affichage de la fenetre
-
     QApplication app(argc, argv);
 
     MainWindow mywindow;
+
+    // Remplissage des combobox
+    mywindow.initialization();
+    mywindow.getDataFromDB();
 
     mywindow.show();
 
