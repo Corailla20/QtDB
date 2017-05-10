@@ -14,6 +14,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void getDataFromDB();
+    void initialization();
 
 private slots:
     void on_Button_Rechercher_clicked();

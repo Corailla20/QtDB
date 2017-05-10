@@ -1,9 +1,16 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "Model/DBInteractor.h"
+<<<<<<< HEAD
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QSqlError>
+#include <qvariant.h>
+=======
 
 using namespace std;
 
+>>>>>>> 35360abcffe8b7f005542052dea02b01201b4f7b
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -17,6 +24,40 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+<<<<<<< HEAD
+void MainWindow::initialization()
+{
+    ui->CB_Pathologie->addItem("");
+    ui->CB_Modalite->addItem("");
+    ui->CB_Patient->addItem("");
+    ui->CB_Region->addItem("");
+}
+
+void MainWindow::getDataFromDB()
+{
+    QSqlDatabase db;
+
+    const string HOST_NAME = "localhost";
+    const string DATABASE_NAME = "tech_pax";
+    const string USER_NAME = "techmed";
+    const string PASSWORD = "master";
+    const string QSQL_DATABASE = "QSQLITE";
+
+    db = QSqlDatabase::addDatabase(QSQL_DATABASE.c_str());
+    db.setHostName(HOST_NAME.c_str());
+    db.setDatabaseName(DATABASE_NAME.c_str());
+    db.setUserName(USER_NAME.c_str());
+    db.setPassword(PASSWORD.c_str());
+    bool ok = db.open();
+
+    QSqlQuery query("SELECT nom FROM patient", db);
+
+    while (query.next()) {
+        QString name = query.value(0).toString();
+        ui->CB_Patient->addItem(name);
+    }
+}
+=======
 void MainWindow::on_Button_Rechercher_clicked()
 {
     string patient_text = ui->CB_Patient->currentText();
@@ -28,6 +69,7 @@ void MainWindow::on_Button_Rechercher_clicked()
     cout << "Modalite : " << modalite_text << endl;
     cout << "Pathologie : " << pathologie_text << endl;
     cout << "Region : " << region_text << endl;
+>>>>>>> 35360abcffe8b7f005542052dea02b01201b4f7b
 
     map<string, string> columnValueMappingForCondition;
 
