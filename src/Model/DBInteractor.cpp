@@ -15,18 +15,18 @@ const string DBInteractor::QSQL_DATABASE = "QSQLITE";
 * Methode for get or create a database instance access
 * Return a database instance
 */
-DBInteractor* DBInteractor::getInstance() 
+DBInteractor* DBInteractor::getInstance()
 {
-	if(!instanceFlag) 
-	{
-		db_instance = new DBInteractor();
-		instanceFlag = true;
-		return db_instance;
-	} 
-	else 
-	{
-		return db_instance;
-	}
+    if(!instanceFlag)
+    {
+        db_instance = new DBInteractor();
+        instanceFlag = true;
+        return db_instance;
+    }
+    else
+    {
+        return db_instance;
+    }
 }
 
 /**
@@ -34,23 +34,23 @@ DBInteractor* DBInteractor::getInstance()
 */
 DBInteractor::DBInteractor()
 {
-	cout<<"Creation of the database instance"<<endl;
+    cout<<"Creation of the database instance"<<endl;
     db = QSqlDatabase::addDatabase(QSQL_DATABASE.c_str());
     db.setHostName(HOST_NAME.c_str());
     db.setDatabaseName(DATABASE_NAME.c_str());
     db.setUserName(USER_NAME.c_str());
     db.setPassword(PASSWORD.c_str());
-	error = db.open();
+    error = db.open();
 
-	QSqlQuery query(db);
+    QSqlQuery query(db);
 	
-	if (!query.exec("PRAGMA foreign_keys = ON")){
-		std::cout << "Impossible d'activer les clés étrangères" << std::endl;
-		instanceFlag = false;
-	}
-	if(instanceFlag == false){
-		std::cout << "Errors" << std::endl;
-	}
+    if (!query.exec("PRAGMA foreign_keys = ON")){
+        std::cout << "Impossible d'activer les clés étrangères" << std::endl;
+        instanceFlag = false;
+    }
+    if(instanceFlag == false){
+        std::cout << "Errors" << std::endl;
+    }
 }
 
 /**
@@ -62,24 +62,24 @@ DBInteractor::DBInteractor()
  */
 void DBInteractor::PrepareAndExecuteQuerySelect(String tableName, Map<String, String> columnValueMappingForSelect)
 {
-	StringBuilder selectSQLBuilder = new StringBuilder();
-	selectSQLBuilder.append("SELECT * FROM ").append(tableName).append(" WHERE ");
+    StringBuilder selectSQLBuilder = new StringBuilder();
+    selectSQLBuilder.append("SELECT * FROM ").append(tableName).append(" WHERE ");
 
-	columnValueMappingForSelect = RemovingNullOrBlankMappValue(columnValueMappingForSelect);
+    columnValueMappingForSelect = RemovingNullOrBlankMappValue(columnValueMappingForSelect);
 
-	if (!columnValueMappingForSelect.isEmpty()) {
-		int currentElement = 0;
-		int nbOfElement = columnValueMappingForSelect.size();
+    if (!columnValueMappingForSelect.isEmpty()) {
+        int currentElement = 0;
+        int nbOfElement = columnValueMappingForSelect.size();
         for (Map.Entry<String, String> entry : columnValueMappingForSelect.entrySet()) {
             selectSQLBuilder.append(entry.getKey()).append(" = ").append(entry.getValue());
-			if(currentElement !=  nbOfElement){
-				selectSQLBuilder.append(" AND ");
-			}
+            if(currentElement !=  nbOfElement){
+                selectSQLBuilder.append(" AND ");
+            }
         }
     }
 
     selectSQLBuilder = new StringBuilder(selectSQLBuilder.subSequence(0, selectSQLBuilder.length() - 1));
-	cout << selectSQLBuilder.toString() << endl;
+    cout << selectSQLBuilder.toString() << endl;
     //return selectSQLBuilder.toString();
 }
 
@@ -91,12 +91,12 @@ void DBInteractor::PrepareAndExecuteQuerySelect(String tableName, Map<String, St
  * @param columnValueMappingForInsert List of Column & Value pair to Insert.
  * @return Final generated INSERT SQL Statement.
  */
-void DBInteractor::PrepareAndExecuteQueryInsert(String tableName, Map<String, String> columnValueMappingForInsert) 
-{  
-	StringBuilder insertSQLBuilder = new StringBuilder();
-	insertSQLBuilder.append("INSERT INTO ").append(tableName).append("( ").append(tableName).append("(");
+void DBInteractor::PrepareAndExecuteQueryInsert(String tableName, Map<String, String> columnValueMappingForInsert)
+{
+    StringBuilder insertSQLBuilder = new StringBuilder();
+    insertSQLBuilder.append("INSERT INTO ").append(tableName).append("( ").append(tableName).append("(");
 
-	columnValueMappingForInsert = RemovingNullOrBlankMappValue(columnValueMappingForInsert);
+    columnValueMappingForInsert = RemovingNullOrBlankMappValue(columnValueMappingForInsert);
 
     if (!columnValueMappingForInsert.isEmpty()) {
         for (Map.Entry<String, String> entry : columnValueMappingForInsert.entrySet()) {
@@ -115,7 +115,7 @@ void DBInteractor::PrepareAndExecuteQueryInsert(String tableName, Map<String, St
 
     insertSQLBuilder = new StringBuilder(insertSQLBuilder.subSequence(0, insertSQLBuilder.length() - 1));
     insertSQLBuilder.append(")");
-	cout << insertSQLBuilder.toString() << endl;
+    cout << insertSQLBuilder.toString() << endl;
     //return insertSQLBuilder.toString();
 }
 
@@ -129,12 +129,12 @@ void DBInteractor::PrepareAndExecuteQueryInsert(String tableName, Map<String, St
  * @param columnValueMappingForCondition List of Column & Value pair for WHERE clause.
  * @return Final generated UPDATE SQL Statement.
  */
-void DBInteractor::PrepareAndExecuteQueryUpdate(String tableName, Map<String, String> columnValueMappingForSet, Map<String, String> columnValueMappingForCondition) 
+void DBInteractor::PrepareAndExecuteQueryUpdate(String tableName, Map<String, String> columnValueMappingForSet, Map<String, String> columnValueMappingForCondition)
 {
     StringBuilder updateQueryBuilder = new StringBuilder();
 
-	columnValueMappingForSet = RemovingNullOrBlankMappValue(columnValueMappingForSet);
-	columnValueMappingForCondition = RemovingNullOrBlankMappValue(columnValueMappingForCondition);
+    columnValueMappingForSet = RemovingNullOrBlankMappValue(columnValueMappingForSet);
+    columnValueMappingForCondition = RemovingNullOrBlankMappValue(columnValueMappingForCondition);
 
     updateQueryBuilder.append("UPDATE ").append(tableName).append(" SET "); //Making the UPDATE Query
 
@@ -155,8 +155,8 @@ void DBInteractor::PrepareAndExecuteQueryUpdate(String tableName, Map<String, St
     }
 
     updateQueryBuilder = new StringBuilder(updateQueryBuilder.subSequence(0, updateQueryBuilder.length() - 1));
-	cout << updateQueryBuilder.toString() << endl;
-    //return updateQueryBuilder.toString();  
+    cout << updateQueryBuilder.toString() << endl;
+    //return updateQueryBuilder.toString();
 }
 
 
@@ -167,12 +167,12 @@ void DBInteractor::PrepareAndExecuteQueryUpdate(String tableName, Map<String, St
  * @param columnValueMappingForCondition List of Column & Value pair for WHERE clause.
  * @return Final generated DELETE SQL Statement.
  */
-void DBInteractor::PrepareAndExecuteQueryDelete(String tableName, Map<String, String> columnValueMappingForCondition) 
+void DBInteractor::PrepareAndExecuteQueryDelete(String tableName, Map<String, String> columnValueMappingForCondition)
 {
     StringBuilder deleteSQLBuilder = new StringBuilder();
-	deleteSQLBuilder.append("DELETE FROM ").append(tableName).append(" WHERE ");
+    deleteSQLBuilder.append("DELETE FROM ").append(tableName).append(" WHERE ");
 
-	columnValueMappingForCondition = RemovingNullOrBlankMappValue(columnValueMappingForCondition);
+    columnValueMappingForCondition = RemovingNullOrBlankMappValue(columnValueMappingForCondition);
 
     if (!columnValueMappingForCondition.isEmpty()) {
         for (Map.Entry<String, String> entry : columnValueMappingForCondition.entrySet()) {
@@ -181,8 +181,8 @@ void DBInteractor::PrepareAndExecuteQueryDelete(String tableName, Map<String, St
     }
 
     deleteSQLBuilder = new StringBuilder(deleteSQLBuilder.subSequence(0, deleteSQLBuilder.length() - 5));
-	cout << deleteSQLBuilder.toString() << endl;
-    //return deleteSQLBuilder.toString(); 
+    cout << deleteSQLBuilder.toString() << endl;
+    //return deleteSQLBuilder.toString();
 }
 
 /**
@@ -193,14 +193,14 @@ void DBInteractor::PrepareAndExecuteQueryDelete(String tableName, Map<String, St
  */
 map<string, string> RemovingNullOrBlankMappValue(columnValueMapping)
 {
-	if (!columnValueMapping.isEmpty()) {
+    if (!columnValueMapping.isEmpty()) {
         for (Map.Entry<String, String> entry : columnValueMapping.entrySet()) {
             if(entry.getValue() == null || entry.getValue().equals("")) {
                 columnValueMapping.remove(entry.getKey());
             }
         }
     }
-	return columnValueMapping;
+    return columnValueMapping;
 }
 
 
@@ -211,13 +211,13 @@ map<string, string> RemovingNullOrBlankMappValue(columnValueMapping)
  */
 void DBInteractor::ExecuteQuery(string queryString)
 {
-	QSqlQuery query(sqlQueryString, db);
+    QSqlQuery query(sqlQueryString, db);
 
     if(!query.exec()) {
         std::cout << "Une erreur s'est produite" << std::endl;
     }
 
-	while (query.next()) {
+    while (query.next()) {
         QString test = query.value(0).toString();
         std::cout << "Il y a " << test.toStdString() << std::endl;
     }
@@ -228,16 +228,16 @@ void DBInteractor::ExecuteQuery(string queryString)
  * It is a function to execute each line of a sql document into the databse
  * @param pathFileName the path of the file
  */
-void DBInteractor::InsertDefaultData(string pathFileName) 
+void DBInteractor::InsertDefaultData(string pathFileName)
 {
-	ifstream file(pathFileName, ios::in);
+    ifstream file(pathFileName, ios::in);
     if(fichier) {
-		string line;
-		while(getline(file, line)) {
-			cout << line << endl;
-			ExecuteQuery(line);
-		}
-	} else {
-		cerr << "Impossible d'ouvrir le fichier !" << endl;
-	}
+        string line;
+        while(getline(file, line)) {
+            cout << line << endl;
+            ExecuteQuery(line);
+        }
+    } else {
+        cerr << "Impossible d'ouvrir le fichier !" << endl;
+    }
 }
