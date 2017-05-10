@@ -1,12 +1,24 @@
 #include <iostream>
 #include <string>
 #include "Model/DBInteractor.h"
+#include <QApplication>
+#include "View/mainwindow.h"
 
 
-int main()
+int main(int argc, char** argv)
 {
+    // Affichage de la fenetre
+
+    QApplication app(argc, argv);
+
+    MainWindow mywindow;
+
+    mywindow.show();
+
+    return app.exec();
+
 	/** DEBUT PIERRE EN DEV**/
-    
+    /*
 	//1) INSERT DATA
 	DBInteractor::getInstance()->InsertDefaultData("../data/data.sql");
 
@@ -25,7 +37,7 @@ int main()
 	// UPDATE
 	DBInteractor::getInstance()->PrepareAndExecuteQueryUpdate("TESST", columnValueMappingForSet, columnValueMappingForCondition);
 
-
+    */
 	/** FIN PIERRE **/
 
 }
