@@ -55,6 +55,7 @@ void MainWindow::getDataFromDB()
 
 void MainWindow::on_Button_Rechercher_clicked()
 {
+    /*
     string patient_text = ui->CB_Patient->currentText();
     string modalite_text = ui->CB_Modalite->currentText();
     string pathologie_text = ui->CB_Pathologie->currentText();
@@ -90,4 +91,5 @@ void MainWindow::on_Button_Rechercher_clicked()
     columnValueMappingForCondition.put("serie.etude_id", "etude.etude_id");
     // SELECT
     //DBInteractor::getInstance()->PrepareAndExecuteQuerySelect("patient", columnValueMappingForCondition);
+    */
 }

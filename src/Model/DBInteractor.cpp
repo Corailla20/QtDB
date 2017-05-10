@@ -11,7 +11,7 @@ DBInteractor* DBInteractor::db_instance = NULL;
 QSqlDatabase DBInteractor::db;
 
 const string DBInteractor::HOST_NAME = "localhost";
-const string DBInteractor::DATABASE_NAME = "tech_pax";
+const string DBInteractor::DATABASE_NAME = "tech_pax.db";
 const string DBInteractor::USER_NAME = "techmed";
 const string DBInteractor::PASSWORD = "master";
 const string DBInteractor::QSQL_DATABASE = "QSQLITE";
@@ -54,7 +54,7 @@ DBInteractor::DBInteractor()
         instanceFlag = false;
     }
     if(instanceFlag == false){
-        std::cout << "Errors" << std::endl;
+        std::cout << "Errors instance flag" << std::endl;
     }
 }
 
@@ -72,10 +72,10 @@ void DBInteractor::PrepareAndExecuteQuerySelect(map<string, string> tableName, m
 
     if (!tableName.empty()) {
         int currentElement = 0;
-        int nbOfElement = tableName.size();
+        int nbOfElement = tableName.size()-1;
         for (map<string, string>::iterator entry = tableName.begin(); entry != tableName.end(); ++entry) {
-            selectSQLBuilder << entry->first << " = " << entry->second;
-            if(currentElement !=  nbOfElement){
+            selectSQLBuilder << entry->first;
+            if(currentElement <  nbOfElement){
                 selectSQLBuilder << ",";
             }
             currentElement++;
@@ -86,11 +86,11 @@ void DBInteractor::PrepareAndExecuteQuerySelect(map<string, string> tableName, m
 
     if (!columnValueMappingForSelect.empty()) {
 		int currentElement = 0;
-		int nbOfElement = columnValueMappingForSelect.size();
+        int nbOfElement = columnValueMappingForSelect.size()-1;
 
         for (map<string, string>::iterator entry = columnValueMappingForSelect.begin(); entry != columnValueMappingForSelect.end(); ++entry) {
             selectSQLBuilder << entry->first << " = " << entry->second;
-			if(currentElement !=  nbOfElement){
+            if(currentElement <  nbOfElement){
                 selectSQLBuilder << " AND ";
 			}
             currentElement++;
@@ -112,24 +112,35 @@ void DBInteractor::PrepareAndExecuteQuerySelect(map<string, string> tableName, m
 void DBInteractor::PrepareAndExecuteQueryInsert(string tableName, map<string, string> columnValueMappingForInsert)
 {  
     std::stringstream insertSQLBuilder;
-    insertSQLBuilder << "INSERT INTO " << tableName << "( " << tableName << "(";
+    insertSQLBuilder << "INSERT INTO " << tableName << "(";
+    int nbOfElement = columnValueMappingForInsert.size()-1;
+    int currentElement = 0;
 
     if (!columnValueMappingForInsert.empty()) {
         for (map<string, string>::iterator entry = columnValueMappingForInsert.begin(); entry != columnValueMappingForInsert.end(); ++entry) {
-            insertSQLBuilder << entry->first << ",";
+            insertSQLBuilder << entry->first;
+            if(currentElement < nbOfElement){
+                insertSQLBuilder << ",";;
+            }
+            currentElement++;
         }
 
         insertSQLBuilder << ") VALUES(";
 
+        currentElement = 0;
+        nbOfElement = columnValueMappingForInsert.size()-1;
         for (map<string, string>::iterator entry = columnValueMappingForInsert.begin(); entry != columnValueMappingForInsert.end(); ++entry) {
-            insertSQLBuilder << entry->second << ",";
+            insertSQLBuilder << entry->second;
+            if(currentElement < nbOfElement){
+                insertSQLBuilder << ",";
+            }
+            currentElement++;
         }
     }
     insertSQLBuilder << ")";
     cout << insertSQLBuilder.str() << endl;
     //return insertSQLBuilder.toString();
 }
-
 
 
 /**
@@ -153,7 +164,7 @@ void DBInteractor::PrepareAndExecuteQueryUpdate(string tableName, map<string, st
         for (map<string, string>::iterator entry = columnValueMappingForSet.begin(); entry != columnValueMappingForSet.end(); ++entry) {
             updateQueryBuilder << entry->first << " = " << entry->second ;
             if(currentElement < nbOfElement){
-                updateQueryBuilder << ",";;
+                updateQueryBuilder << ",";
             }
             currentElement++;
         }
@@ -192,8 +203,14 @@ void DBInteractor::PrepareAndExecuteQueryDelete(string tableName, map<string, st
     deleteSQLBuilder << "DELETE FROM " << tableName << " WHERE ";
 
     if (!columnValueMappingForCondition.empty()) {
+        int currentElement = 0;
+        int nbOfElement = columnValueMappingForCondition.size()-1;
         for (map<string, string>::iterator entry = columnValueMappingForCondition.begin(); entry != columnValueMappingForCondition.end(); ++entry) {
-            deleteSQLBuilder << entry->first << "=" << entry->second << " AND ";
+            deleteSQLBuilder << entry->first << "=" << entry->second;
+            if(currentElement < nbOfElement){
+                deleteSQLBuilder << " AND ";;
+            }
+            currentElement++;
         }
     }
 
@@ -227,7 +244,7 @@ void DBInteractor::ExecuteQuery(string sqlQueryString)
  */
 void DBInteractor::InsertDefaultData(string pathFileName)
 {
-	ifstream file(pathFileName, ios::in);
+    ifstream file(pathFileName.c_str(), ios::in);
     if(file) {
 		string line;
 		while(getline(file, line)) {

@@ -10,4 +10,5 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 add_subdirectory(src)
+file(COPY data/tech_pax.db DESTINATION ${CMAKE_BINARY_DIR})
 
