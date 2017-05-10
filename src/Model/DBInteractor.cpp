@@ -20,18 +20,18 @@ const string DBInteractor::QSQL_DATABASE = "QSQLITE";
 * Methode for get or create a database instance access
 * Return a database instance
 */
-DBInteractor* DBInteractor::getInstance() 
+DBInteractor* DBInteractor::getInstance()
 {
-	if(!instanceFlag) 
-	{
-		db_instance = new DBInteractor();
-		instanceFlag = true;
-		return db_instance;
-	} 
-	else 
-	{
-		return db_instance;
-	}
+    if(!instanceFlag)
+    {
+        db_instance = new DBInteractor();
+        instanceFlag = true;
+        return db_instance;
+    }
+    else
+    {
+        return db_instance;
+    }
 }
 
 /**
@@ -39,23 +39,23 @@ DBInteractor* DBInteractor::getInstance()
 */
 DBInteractor::DBInteractor()
 {
-	cout<<"Creation of the database instance"<<endl;
+    cout<<"Creation of the database instance"<<endl;
     db = QSqlDatabase::addDatabase(QSQL_DATABASE.c_str());
     db.setHostName(HOST_NAME.c_str());
     db.setDatabaseName(DATABASE_NAME.c_str());
     db.setUserName(USER_NAME.c_str());
     db.setPassword(PASSWORD.c_str());
-	error = db.open();
+    error = db.open();
 
-	QSqlQuery query(db);
+    QSqlQuery query(db);
 	
-	if (!query.exec("PRAGMA foreign_keys = ON")){
-		std::cout << "Impossible d'activer les clés étrangères" << std::endl;
-		instanceFlag = false;
-	}
-	if(instanceFlag == false){
-		std::cout << "Errors" << std::endl;
-	}
+    if (!query.exec("PRAGMA foreign_keys = ON")){
+        std::cout << "Impossible d'activer les clés étrangères" << std::endl;
+        instanceFlag = false;
+    }
+    if(instanceFlag == false){
+        std::cout << "Errors" << std::endl;
+    }
 }
 
 /**
@@ -126,7 +126,6 @@ void DBInteractor::PrepareAndExecuteQueryInsert(string tableName, map<string, st
         }
     }
     insertSQLBuilder << ")";
-
     cout << insertSQLBuilder.str() << endl;
     //return insertSQLBuilder.toString();
 }
@@ -186,6 +185,7 @@ void DBInteractor::PrepareAndExecuteQueryUpdate(string tableName, map<string, st
  * @param columnValueMappingForCondition List of Column & Value pair for WHERE clause.
  * @return Final generated DELETE SQL Statement.
  */
+
 void DBInteractor::PrepareAndExecuteQueryDelete(string tableName, map<string, string> columnValueMappingForCondition)
 {
     std::stringstream deleteSQLBuilder;
@@ -201,7 +201,6 @@ void DBInteractor::PrepareAndExecuteQueryDelete(string tableName, map<string, st
     //return deleteSQLBuilder.toString(); 
 }
 
-
 /**
  * Methode for execute SQL query String
  * It is a generic function.
@@ -215,7 +214,7 @@ void DBInteractor::ExecuteQuery(string sqlQueryString)
         std::cout << "Une erreur s'est produite" << std::endl;
     }
 
-	while (query.next()) {
+    while (query.next()) {
         QString test = query.value(0).toString();
         std::cout << "Il y a " << test.toStdString() << std::endl;
     }
@@ -226,7 +225,7 @@ void DBInteractor::ExecuteQuery(string sqlQueryString)
  * It is a function to execute each line of a sql document into the databse
  * @param pathFileName the path of the file
  */
-void DBInteractor::InsertDefaultData(string pathFileName) 
+void DBInteractor::InsertDefaultData(string pathFileName)
 {
 	ifstream file(pathFileName, ios::in);
     if(file) {

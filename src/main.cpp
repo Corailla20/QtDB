@@ -2,12 +2,28 @@
 #include <string>
 #include <map>
 #include "Model/DBInteractor.h"
+#include <QApplication>
+#include "View/mainwindow.h"
 
 using namespace std;
 
-int main()
+int main(int argc, char** argv)
 {
-    
+
+    // Affichage de la fenetre
+    QApplication app(argc, argv);
+
+    MainWindow mywindow;
+
+    // Remplissage des combobox
+    mywindow.initialization();
+    mywindow.getDataFromDB();
+
+    mywindow.show();
+
+    return app.exec();
+
+    /*
 	//1) INSERT DATA
     //DBInteractor::getInstance()->InsertDefaultData("../data/data.sql");
 
@@ -26,8 +42,6 @@ int main()
 
     DBInteractor::getInstance()->PrepareAndExecuteQueryUpdate("TEST", columnValueMappingForSet, columnValueMappingForCondition);
 
-    */
-
 	// EXAMPLE UPDATE
 
     map<string, string> columnValueMappingForSet;
@@ -40,5 +54,8 @@ int main()
     columnValueMappingForCondition["COLUMN1"] = "LAIEHDOA ZUFH";
 
     DBInteractor::getInstance()->PrepareAndExecuteQueryUpdate("TEST", columnValueMappingForSet, columnValueMappingForCondition);
+
+    */
+
 
 }
