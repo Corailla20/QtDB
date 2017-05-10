@@ -1,4 +1,4 @@
-DELETE FROM referent_etude_utilisateur;
+/*DELETE FROM referent_etude_utilisateur;
 DELETE FROM source_resultat_resultat;
 DELETE FROM source_resultat_serie;
 DELETE FROM resultat;
@@ -10,7 +10,7 @@ DELETE FROM utilisateur;
 DELETE FROM patient;
 DELETE FROM region_anatomique;
 DELETE FROM role;
-DELETE FROM type_acquisition;
+DELETE FROM type_acquisition;*/
 
 INSERT INTO patient(patient_id,date_naissance,sexe,nom,prenom,coordonnees) VALUES(1,'27/05/1989','F','Martin','Julie','');
 INSERT INTO patient(patient_id,date_naissance,sexe,nom,prenom,coordonnees) VALUES(2,'12/01/1967','M','Dubois','Paul','');
@@ -24,6 +24,7 @@ INSERT INTO region_anatomique(region_id,nom) VALUES (4,'Foie');
 INSERT INTO region_anatomique(region_id,nom) VALUES (5,'Intestin');
 INSERT INTO region_anatomique(region_id,nom) VALUES (6,'Estomac');
 INSERT INTO region_anatomique(region_id,nom) VALUES (7,'Dorsale');
+INSERT INTO region_anatomique(region_id,nom) VALUES (8,'Cheville');
 
 INSERT INTO type_acquisition(type_acquisition_id,appareil,modalite) VALUES (1,'Scanner','PetScan');
 INSERT INTO type_acquisition(type_acquisition_id,appareil,modalite) VALUES (2,'IRM','T2');
