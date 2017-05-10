@@ -18,7 +18,7 @@ public:
     void initialization();
 
 private slots:
-
+    void on_Button_Rechercher_clicked();
 
 private:
     Ui::MainWindow *ui;
