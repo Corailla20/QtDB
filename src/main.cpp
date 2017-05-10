@@ -1,7 +1,9 @@
 #include <iostream>
 #include <string>
+#include <map>
 #include "Model/DBInteractor.h"
 
+using namespace std;
 
 int main()
 {
@@ -13,13 +15,13 @@ int main()
 	// 2) 
 	// EXAMPLE UPDATE
 	// Preparing to call and execute function to generate UPDATE SQL request
-	Map<String, String> columnValueMappingForSet = new HashMap<String, String>();
+    map<string, string> columnValueMappingForSet;
 	columnValueMappingForSet.put("FIRST_NAME", "'DEBOPAM'");
 	columnValueMappingForSet.put("LAST_NAME", "'PAL'");
 	columnValueMappingForSet.put("DESIGNATION", "'Software Developer'");
 	columnValueMappingForSet.put("ORGANIZATION", "'NIC'");
 
-	Map<String, String> columnValueMappingForCondition = new HashMap<String, String>();
+    map<string, string> columnValueMappingForCondition;
 	columnValueMappingForCondition.put("COLUMN1", "LAIEHDOA ZUFH");
 
 	// UPDATE

@@ -14,6 +14,7 @@
 #include <QSqlError>
 #include <qvariant.h>
 #include <string>
+#include <map>
 
 using namespace std;
 
@@ -38,13 +39,13 @@ public:
 
     static DBInteractor* getInstance();
 	
-	void PrepareAndExecuteQuerySelect(String tableName, Map<String, String> columnValueMappingForSelect);
-	void PrepareAndExecuteQueryInsert(String tableName, Map<String, String> columnValueMappingForInsert);
-	void PrepareAndExecuteQueryUpdate(String tableName, Map<String, String> columnValueMappingForSet, Map<String, String> columnValueMappingForCondition);
-	void PrepareAndExecuteQueryDelete(String tableName, Map<String, String> columnValueMappingForCondition);
+    void PrepareAndExecuteQuerySelect(string tableName, map<string, string> columnValueMappingForSelect);
+    void PrepareAndExecuteQueryInsert(string tableName, map<string, string> columnValueMappingForInsert);
+    void PrepareAndExecuteQueryUpdate(string tableName, map<string, string> columnValueMappingForSet, map<string, string> columnValueMappingForCondition);
+    void PrepareAndExecuteQueryDelete(string tableName, map<string, string> columnValueMappingForCondition);
 	void ExecuteQuery(string queryString);
     void InsertDefaultData(string pathFileName);
-	map<string, string> RemovingNullOrBlankMappValue(columnValueMapping);
+    map<string, string> RemovingNullOrBlankMappValue(map<string, string> columnValueMapping);
 
     ~DBInteractor()
     {
