@@ -6,8 +6,12 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <qvariant.h>
+<<<<<<< HEAD
 #include <QComboBox>
 #include <QDir>
+=======
+#include <string>
+>>>>>>> 360365e27f713eafdbed1f545bd8c279e39f8a23
 
 using namespace std;
 
@@ -71,6 +75,7 @@ void MainWindow::getDataFromDB()
 
 void MainWindow::on_Button_Rechercher_clicked()
 {
+<<<<<<< HEAD
 //    string patient_text = ui->CB_Patient->currentText();
 //    string modalite_text = ui->CB_Modalite->currentText();
 //    string pathologie_text = ui->CB_Pathologie->currentText();
@@ -106,4 +111,57 @@ void MainWindow::on_Button_Rechercher_clicked()
 //    columnValueMappingForCondition.put("serie.etude_id", "etude.etude_id");
 //    // SELECT
 //    //DBInteractor::getInstance()->PrepareAndExecuteQuerySelect("patient", columnValueMappingForCondition);
+=======
+    string patient_text = ui->CB_Patient->currentText().toStdString();
+    string modalite_text = ui->CB_Modalite->currentText().toStdString();
+    string region_text = ui->CB_Region->currentText().toStdString();
+
+    cout << "Patient : " << patient_text << endl;
+    cout << "Modalite : " << modalite_text << endl;
+    cout << "Region : " << region_text << endl;
+
+    map<string, string> tableName, columnValueMappingForSelect;
+
+    tableName["type_acquisition"] = "";
+    tableName["patient"] = "";
+    tableName["region_anatomique"] = "";
+
+    if(patient_text != "")
+    {
+        columnValueMappingForSelect["patient.nom"] = "'" + patient_text + "'";
+    }
+
+    if(modalite_text != "")
+    {
+        columnValueMappingForSelect["type_acquisition.modalite"] = "'" + modalite_text + "'";
+    }
+
+    if(region_text != "")
+    {
+        columnValueMappingForSelect["region_anatomique.nom"] = "'" + region_text + "'";
+    }
+
+    if(patient_text != "" && region_text != "")
+    {
+            columnValueMappingForSelect["patient.patient_id"] = "etude.patient_id";
+        columnValueMappingForSelect["region.region_id"] = "etude.region_id";
+    }
+
+    if(modalite_text != "" && patient_text != "")
+    {
+        columnValueMappingForSelect["serie.type_acquisition_id"] = "type_acquisition.type_acquisition_id";
+        columnValueMappingForSelect["serie.etude_id"] = "etude.etude_id";
+        columnValueMappingForSelect["patient.patient_id"] = "etude.patient_id";
+    }
+
+    if(region_text != "" && modalite_text != "")
+    {
+        columnValueMappingForSelect["region.region_id"] = "etude.region_id";
+        columnValueMappingForSelect["serie.type_acquisition_id"] = "type_acquisition.type_acquisition_id";
+        columnValueMappingForSelect["serie.etude_id"] = "etude.etude_id";
+    }
+
+    // SELECT
+    //DBInteractor::getInstance()->PrepareAndExecuteQuerySelect(tableName, columnValueMappingForCondition);
+>>>>>>> 360365e27f713eafdbed1f545bd8c279e39f8a23
 }
