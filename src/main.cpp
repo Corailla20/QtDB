@@ -7,27 +7,38 @@ using namespace std;
 
 int main()
 {
-	/** DEBUT PIERRE EN DEV**/
     
 	//1) INSERT DATA
-	DBInteractor::getInstance()->InsertDefaultData("../data/data.sql");
+    //DBInteractor::getInstance()->InsertDefaultData("../data/data.sql");
 
-	// 2) 
-	// EXAMPLE UPDATE
-	// Preparing to call and execute function to generate UPDATE SQL request
-    map<string, string> columnValueMappingForSet;
-	columnValueMappingForSet.put("FIRST_NAME", "'DEBOPAM'");
-	columnValueMappingForSet.put("LAST_NAME", "'PAL'");
-	columnValueMappingForSet.put("DESIGNATION", "'Software Developer'");
-	columnValueMappingForSet.put("ORGANIZATION", "'NIC'");
+
+    // EXAMPLE SELECT
+    /*
+    map<string, string> tableName, columnValueMappingForSelect;
+
+    tableName["Personne"] = "'DEBOPAM'";
+    tableName["Patient"] = "'PAL'";
+    columnValueMappingForSet["DESIGNATION"] = "'Software Developer'";
+    columnValueMappingForSet["ORGANIZATION"] = "'NIC'";
 
     map<string, string> columnValueMappingForCondition;
-	columnValueMappingForCondition.put("COLUMN1", "LAIEHDOA ZUFH");
+    columnValueMappingForCondition["COLUMN1"] = "LAIEHDOA ZUFH";
 
-	// UPDATE
-	DBInteractor::getInstance()->PrepareAndExecuteQueryUpdate("TESST", columnValueMappingForSet, columnValueMappingForCondition);
+    DBInteractor::getInstance()->PrepareAndExecuteQueryUpdate("TEST", columnValueMappingForSet, columnValueMappingForCondition);
 
+    */
 
-	/** FIN PIERRE **/
+	// EXAMPLE UPDATE
+
+    map<string, string> columnValueMappingForSet;
+    columnValueMappingForSet["FIRST_NAME"] = "'DEBOPAM'";
+    columnValueMappingForSet["LAST_NAME"] = "'PAL'";
+    columnValueMappingForSet["DESIGNATION"] = "'Software Developer'";
+    columnValueMappingForSet["ORGANIZATION"] = "'NIC'";
+
+    map<string, string> columnValueMappingForCondition;
+    columnValueMappingForCondition["COLUMN1"] = "LAIEHDOA ZUFH";
+
+    DBInteractor::getInstance()->PrepareAndExecuteQueryUpdate("TEST", columnValueMappingForSet, columnValueMappingForCondition);
 
 }

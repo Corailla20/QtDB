@@ -1,8 +1,5 @@
-
-
-
-
-
+/*
+ *
 #include <iostream>
 #include <QSqlDatabase>
 #include <QSqlQuery>
@@ -46,8 +43,7 @@ void addData(QSqlDatabase & db){
     queryAdd2.exec();
 }
 
-<<<<<<< HEAD:src/Model/DBInteraction.cpp
-/*
+
 DBInteractor::DBInteractor()
 {
     cout<<"Creation de l'instance"<<endl;
@@ -70,7 +66,6 @@ DBInteractor& DBInteractor::Instance()
 }
 
 
-=======
 >>>>>>> 40b777d26194ad89b4941d5ac585a394540578d6:src/provisoire_pierre.cpp
 
 int main() {

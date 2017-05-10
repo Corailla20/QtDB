@@ -9,11 +9,8 @@
  */
 
 #include <iostream>
-#include <QSqlDatabase>
-#include <QSqlQuery>
-#include <QSqlError>
-#include <qvariant.h>
 #include <string>
+#include <QSqlDatabase>
 #include <map>
 
 using namespace std;
@@ -39,7 +36,7 @@ public:
 
     static DBInteractor* getInstance();
 	
-    void PrepareAndExecuteQuerySelect(string tableName, map<string, string> columnValueMappingForSelect);
+    void PrepareAndExecuteQuerySelect(map<string, string> tableName, map<string, string> columnValueMappingForSelect);
     void PrepareAndExecuteQueryInsert(string tableName, map<string, string> columnValueMappingForInsert);
     void PrepareAndExecuteQueryUpdate(string tableName, map<string, string> columnValueMappingForSet, map<string, string> columnValueMappingForCondition);
     void PrepareAndExecuteQueryDelete(string tableName, map<string, string> columnValueMappingForCondition);
